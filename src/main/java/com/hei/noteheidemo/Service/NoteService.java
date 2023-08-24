@@ -21,7 +21,7 @@ public class NoteService {
             noteRepository.insert(note);
             return note;
         } catch (SQLException e) {
-            throw new RuntimeException("Erreur lors de la création de la note " + note + ": " + e);
+            throw new RuntimeException("There was a error when creating note " + note + ": " + e);
         }
     }
 
@@ -29,7 +29,7 @@ public class NoteService {
         try {
             return noteRepository.findAll();
         } catch (SQLException e) {
-            throw new RuntimeException("Erreur lors de la récupération de toutes les notes: " + e);
+            throw new RuntimeException("There was a error when fetching notes: " + e);
         }
     }
 
@@ -37,7 +37,7 @@ public class NoteService {
         try {
             return noteRepository.findById(id);
         } catch (SQLException e) {
-            throw new RuntimeException("Erreur lors de la récupération de la note par ID " + id + ": " + e);
+            throw new RuntimeException("There was a error when fetching note by ID " + id + ": " + e);
         }
     }
 
@@ -46,7 +46,7 @@ public class NoteService {
             noteRepository.update(note);
             return note;
         } catch (SQLException e) {
-            throw new RuntimeException("Erreur lors de la mise à jour de la note " + note + ": " + e);
+            throw new RuntimeException("There was a error when updating note " + note + ": " + e);
         }
     }
 
@@ -54,7 +54,7 @@ public class NoteService {
         try {
             noteRepository.delete(id);
         } catch (SQLException e) {
-            throw new RuntimeException("Erreur lors de la suppression de la note " + id + ": " + e);
+            throw new RuntimeException("There was a error when deleting note " + id + ": " + e);
         }
     }
 
@@ -62,7 +62,7 @@ public class NoteService {
         try {
             return noteRepository.getAllNotesForStudent(studentId);
         } catch (SQLException e) {
-            throw new RuntimeException("Erreur lors de la récupération de toutes les notes pour l'étudiant " + studentId + ": " + e);
+            throw new RuntimeException("There was a error when fetching  notes for student " + studentId + ": " + e);
         }
     }
 
@@ -70,7 +70,7 @@ public class NoteService {
         try {
             return noteRepository.getAllNotesForSubject(subjectId);
         } catch (SQLException e) {
-            throw new RuntimeException("Erreur lors de la récupération de toutes les notes pour la matière " + subjectId + ": " + e);
+            throw new RuntimeException("There was a error when fetching  notes for subject " + subjectId + ": " + e);
         }
     }
 
@@ -78,7 +78,7 @@ public class NoteService {
         try {
             return noteRepository.getAverageNoteForStudent(studentId);
         } catch (SQLException e) {
-            throw new RuntimeException("Erreur lors du calcul de la moyenne des notes pour l'étudiant " + studentId + ": " + e);
+            throw new RuntimeException("There was a error when fetching average notes for student" + studentId + ": " + e);
         }
     }
 }
