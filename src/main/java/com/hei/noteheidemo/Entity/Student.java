@@ -14,4 +14,5 @@ public class Student {
     private String last_name ;
     private String first_name ;
     private String student_number ;
+    private int group_id ;
 }
