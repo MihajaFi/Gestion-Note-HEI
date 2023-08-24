@@ -1,8 +1,7 @@
 package com.hei.noteheidemo.Service;
 
 import com.hei.noteheidemo.Entity.Student;
-import com.hei.noteheidemo.Repository.GenericREPOSITORY;
-import com.hei.noteheidemo.Repository.StudentREPOSITORY;
+import com.hei.noteheidemo.Repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -11,8 +10,8 @@ import java.util.Optional;
 
 @Service
 public  class StudentService {
-    private StudentREPOSITORY studentDAO ;
-    public StudentService(StudentREPOSITORY studentDAO){
+    private StudentRepository studentDAO ;
+    public StudentService(StudentRepository studentDAO){
         this.studentDAO = studentDAO ;
     }
     public Student insert(Student toInsert){
