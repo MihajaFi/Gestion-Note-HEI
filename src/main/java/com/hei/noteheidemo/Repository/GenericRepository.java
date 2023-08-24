@@ -5,9 +5,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class GenericREPOSITORY<Entity> {
+public abstract class GenericRepository<Entity> {
     private Connection connection ;
-    public GenericREPOSITORY(Connection connection){
+    public GenericRepository(Connection connection){
         this.connection = connection ;
     }
     public Connection getConnection() {
