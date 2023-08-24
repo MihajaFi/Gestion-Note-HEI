@@ -1,4 +1,4 @@
-package com.hei.noteheidemo.Controller;
+package com.hei.noteheidemo.Repository;
 
 import com.hei.noteheidemo.Entity.Group;
 import com.hei.noteheidemo.Repository.GenericRepository;
