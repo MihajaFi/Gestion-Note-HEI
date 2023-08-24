@@ -5,14 +5,11 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import java.time.LocalDate;
-
 @AllArgsConstructor
 @Data
 @ToString
 @EqualsAndHashCode
-public class Evaluations {
-    private int id ;
-    private LocalDate date ;
-    private String subject ;
+public class Group {
+    private int id  ;
+    private String name ;
 }

@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 @Repository
-public class StudentREPOSITORY extends GenericREPOSITORY<Student>{
-    public StudentREPOSITORY(Connection connection) {
+public class StudentRepository extends GenericRepository<Student> {
+    public StudentRepository(Connection connection) {
         super(connection);
     }
 
@@ -19,21 +19,23 @@ public class StudentREPOSITORY extends GenericREPOSITORY<Student>{
         String lastName = resultSet.getString("last_name");
         String firstName= resultSet.getString("first_name");
         String studentNumber= resultSet.getString("student_number");
+        int GroupId = resultSet.getInt("group_id") ;
 
-        return new Student(id , lastName ,firstName ,studentNumber) ;
+        return new Student(id , lastName ,firstName ,studentNumber ,GroupId) ;
     }
 
 
     @Override
     public void insert(Student toInsert) throws SQLException {
-        String sql = "INSERT INTO  \"Student\" (id ,last_name , first_name , student_number) " +
+        String sql = "INSERT INTO  student (last_name , first_name , student_number ,group_id) " +
                 "VALUES (?,?,?,?)" ;
 
         try(PreparedStatement ps = getConnection().prepareStatement(sql)){
-            ps.setInt(1 ,toInsert.getId());
-            ps.setString(2 , toInsert.getLast_name()) ;
-            ps.setString(3 , toInsert.getFirst_name()) ;
-            ps.setString(4 , toInsert.getStudent_number()) ;
+
+            ps.setString(1 , toInsert.getLast_name()) ;
+            ps.setString(2 , toInsert.getFirst_name()) ;
+            ps.setString(3 , toInsert.getStudent_number()) ;
+            ps.setInt(4 ,toInsert.getGroup_id());
 
 
             ps.executeUpdate() ;
@@ -43,7 +45,7 @@ public class StudentREPOSITORY extends GenericREPOSITORY<Student>{
     @Override
     public List<Student> findAll() throws SQLException {
         List<Student>  student = new ArrayList<>();
-        String sql = "SELECT * FROM \"Student\" ";
+        String sql = "SELECT * FROM student ";
 
         try (Statement statement = getConnection().createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
@@ -57,7 +59,7 @@ public class StudentREPOSITORY extends GenericREPOSITORY<Student>{
 
     @Override
     public Optional<Student> findById(int id) throws SQLException {
-        String sql = "SELECT * FROM \"Student\"  WHERE id = ?" ;
+        String sql = "SELECT * FROM student  WHERE id = ?" ;
 
         try(PreparedStatement ps = getConnection().prepareStatement(sql)){
             ps.setInt(1 , id);
@@ -72,12 +74,13 @@ public class StudentREPOSITORY extends GenericREPOSITORY<Student>{
 
     @Override
     public void update(Student toUpdate) throws SQLException {
-        String sql = "UPDATE \"Student\" SET last_name = ?, first_name = ?, student_number = ? WHERE id = ?";
+        String sql = "UPDATE student SET last_name = ?, first_name = ?, student_number = ? ,group_id = ? WHERE id = ?";
         try(PreparedStatement ps = getConnection().prepareStatement(sql)){
             ps.setString(1, toUpdate.getLast_name());
             ps.setString(2, toUpdate.getFirst_name());
             ps.setString(3, toUpdate.getStudent_number());
-            ps.setInt(4, toUpdate.getId());
+            ps.setInt(4 ,toUpdate.getGroup_id());
+            ps.setInt(5, toUpdate.getId());
 
             ps.executeUpdate();
         }
@@ -85,7 +88,7 @@ public class StudentREPOSITORY extends GenericREPOSITORY<Student>{
 
     @Override
     public void delete(int id) throws SQLException {
-        String sql = "DELETE FROM  \"Student\" WHERE id = ?";
+        String sql = "DELETE FROM  student WHERE id = ?";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
             ps.setInt(1, id);
             ps.executeUpdate();
